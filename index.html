@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JARVIS">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon.svg">
+<title>JARVIS — Trainable Local AI</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><div class="orb">J</div><div><h1>JARVIS</h1><p>YOUR PRIVATE AI BRAIN</p></div></div>
+  <div id="brainStatus" class="status"><i></i><span>Brain not loaded</span></div>
+</header>
+<section class="hero">
+  <div class="eyebrow">LOCAL-FIRST INTELLIGENCE</div>
+  <h2>A brain that <span>learns from you.</span></h2>
+  <p>Chat privately, teach facts, correct mistakes and build your own memory.</p>
+  <div class="modelrow"><span class="dot"></span><span id="modelLabel">Qwen 2.5 · 0.5B · On-device</span></div>
+</section>
+<section class="loadpanel" id="loadPanel">
+  <div class="loadtop"><div><strong>Wake up JARVIS</strong><p>First launch downloads the small AI model to your iPhone.</p></div><span class="chip">~350 MB*</span></div>
+  <button id="loadBtn" class="primary">Load local brain</button>
+  <div class="progress"><div id="progressBar"></div></div>
+  <p id="loadMessage" class="hint">Requires Safari with WebGPU and an internet connection for the first model download.</p>
+</section>
+<nav class="tabs">
+  <button class="tab active" data-tab="chat">Chat</button>
+  <button class="tab" data-tab="teach">Teach</button>
+  <button class="tab" data-tab="memory">Memory <b id="memoryCount">0</b></button>
+</nav>
+<main>
+<section id="chatTab" class="pane active">
+  <div id="messages" class="messages">
+    <div class="welcome"><div class="mini-orb">J</div><h3>At your service.</h3><p>I'm your local JARVIS. Teach me what matters, and I'll use it in future conversations.</p><div class="suggestions"><button class="suggestion">What can you do?</button><button class="suggestion">How does your memory work?</button></div></div>
+  </div>
+  <div class="composer">
+    <textarea id="chatInput" rows="1" placeholder="Talk to JARVIS…" aria-label="Message JARVIS"></textarea>
+    <button id="sendBtn" class="send" aria-label="Send">↑</button>
+  </div>
+  <div class="subhint">Your messages and memories stay in this browser on this iPhone.</div>
+</section>
+<section id="teachTab" class="pane">
+  <div class="sectionhead"><div><h3>Teach JARVIS</h3><p>Add facts, preferences, rules or corrections to its permanent memory.</p></div><span class="symbol">✦</span></div>
+  <label for="factTitle">What should JARVIS know?</label>
+  <input id="factTitle" placeholder="e.g. My preferred answer style">
+  <label for="factBody">Teach it something</label>
+  <textarea id="factBody" class="biginput" rows="5" placeholder="Write the information in your own words…"></textarea>
+  <button id="saveFact" class="primary">Save to brain</button>
+  <div class="divider"></div>
+  <div class="sectionhead"><div><h3>Learn from a correction</h3><p>Tell JARVIS what it got wrong and what the right answer is.</p></div></div>
+  <textarea id="correction" class="biginput" rows="4" placeholder="Correction: … The correct information is …"></textarea>
+  <button id="saveCorrection" class="secondary">Remember this correction</button>
+  <div class="divider"></div>
+  <div class="sectionhead"><div><h3>Import notes</h3><p>Bring your own knowledge into JARVIS.</p></div></div>
+  <input id="fileInput" type="file" accept=".txt,.md,.csv,text/plain,text/markdown,text/csv">
+  <p class="hint">Supported in this version: TXT, Markdown and CSV. Files are split into searchable memory notes.</p>
+</section>
+<section id="memoryTab" class="pane">
+  <div class="sectionhead"><div><h3>Your brain's memory</h3><p>Review, edit or remove what JARVIS has learned.</p></div></div>
+  <div class="memoryactions"><button id="exportBtn" class="secondary">Export backup</button><button id="clearBtn" class="danger">Clear all</button></div>
+  <div id="memoryList" class="memorylist"><p class="empty">Nothing learned yet. Use Teach or tell JARVIS “remember that…”.</p></div>
+</section>
+</main>
+<footer>JARVIS LOCAL BRAIN <span>·</span> No account · No API key</footer>
+</div>
+<div id="toast" class="toast" role="status"></div>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
